@@ -8,7 +8,7 @@
 
 <meta name="author" content="Monica Rivera">
 
-<title>EPI590R_Final</title>
+<title>EPI590R Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">EPI590R_Final</h1>
+<h1 class="title">EPI590R Final Project</h1>
 </div>
 
 
@@ -176,61 +176,69 @@ Caused by warning:
  $ percent_region: num [1:99] 3 2 3 1 2 4 13 1 55 5 ...</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the cleaned data to a new CSV file #</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(nsdca_cleaned, <span class="st">"cleaned_nsdca.csv"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(nsdca_cleaned,here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"clean"</span>, <span class="st">"cleaned_nsdca.csv"</span>))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data/clean folder #</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"clean"</span>))) {</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"clean"</span>))</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the complete-case data #</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(nsdca_cleaned, here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"clean"</span>, <span class="st">"nsdca_cleaned_complete.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the complete-case data #</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(nsdca_cleaned, here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"clean"</span>, <span class="st">"nsdca_cleaned_complete.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li>Create a <code>{gtsummary}</code> table of descriptive statistics about your data (1 pt)</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference#</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-one</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Descriptive Statistics for 'Case Count, Number Screened, and Percent of All Disorders in Region"</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The table will show descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column. #</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  nsdca_cleaned,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> region,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">include =</span> <span class="fu">c</span>(region, cases, screened, percent_region),</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">list</span>(</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    cases <span class="sc">~</span> <span class="st">"Case Count"</span>,</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    screened <span class="sc">~</span> <span class="st">"Number Screened"</span>,</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    percent_region <span class="sc">~</span> <span class="st">"Percent of All Disorders in Region"</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_overall</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">modify_table_styling</span>(</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> label,</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">rows =</span> label <span class="sc">==</span> <span class="st">"Percent of All Disorders in Region"</span>,</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">footnote =</span> <span class="st">"see https://catalog.data.gov/dataset/newborn-screening-disorders-426e4"</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  nsdca_cleaned,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> region,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">include =</span> <span class="fu">c</span>(region, cases, screened, percent_region),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    cases <span class="sc">~</span> <span class="st">"Case Count"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    screened <span class="sc">~</span> <span class="st">"Number Screened"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    percent_region <span class="sc">~</span> <span class="st">"Percent of All Disorders in Region"</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_overall</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">modify_table_styling</span>(</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> label,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">rows =</span> label <span class="sc">==</span> <span class="st">"Percent of All Disorders in Region"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">footnote =</span> <span class="st">"see https://catalog.data.gov/dataset/newborn-screening-disorders-426e4"</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># The above is a cross-reference and a table shows the descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column. #</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Inline descriptive statistics #</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>table1 <span class="ot">&lt;-</span> <span class="fu">tbl_summary</span>(</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  nsdca_cleaned,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> region,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>   <span class="at">include =</span> <span class="fu">c</span>(region, cases, screened, percent_region)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_overall</span>(<span class="at">last =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">inline_text</span>(table1, <span class="at">variable =</span> <span class="st">"percent_region"</span>, <span class="at">column =</span> <span class="st">"stat_1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "3 (2, 5)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference #</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>total_sample <span class="ot">&lt;-</span> <span class="fu">nrow</span>(nsdca_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-one" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-one-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percent of All Disorders in Region
+</figcaption>
+<div aria-describedby="tbl-one-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="qjujfvpmmi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qjujfvpmmi table {
+<div id="bvqexhrtni" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bvqexhrtni table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qjujfvpmmi thead, #qjujfvpmmi tbody, #qjujfvpmmi tfoot, #qjujfvpmmi tr, #qjujfvpmmi td, #qjujfvpmmi th {
+#bvqexhrtni thead, #bvqexhrtni tbody, #bvqexhrtni tfoot, #bvqexhrtni tr, #bvqexhrtni td, #bvqexhrtni th {
   border-style: none;
 }
 
-#qjujfvpmmi p {
+#bvqexhrtni p {
   margin: 0;
   padding: 0;
 }
 
-#qjujfvpmmi .gt_table {
+#bvqexhrtni .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -256,12 +264,12 @@ Caused by warning:
   border-left-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_caption {
+#bvqexhrtni .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qjujfvpmmi .gt_title {
+#bvqexhrtni .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -273,7 +281,7 @@ Caused by warning:
   border-bottom-width: 0;
 }
 
-#qjujfvpmmi .gt_subtitle {
+#bvqexhrtni .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -285,7 +293,7 @@ Caused by warning:
   border-top-width: 0;
 }
 
-#qjujfvpmmi .gt_heading {
+#bvqexhrtni .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -297,13 +305,13 @@ Caused by warning:
   border-right-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_bottom_border {
+#bvqexhrtni .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_col_headings {
+#bvqexhrtni .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -318,7 +326,7 @@ Caused by warning:
   border-right-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_col_heading {
+#bvqexhrtni .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -338,7 +346,7 @@ Caused by warning:
   overflow-x: hidden;
 }
 
-#qjujfvpmmi .gt_column_spanner_outer {
+#bvqexhrtni .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -350,15 +358,15 @@ Caused by warning:
   padding-right: 4px;
 }
 
-#qjujfvpmmi .gt_column_spanner_outer:first-child {
+#bvqexhrtni .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qjujfvpmmi .gt_column_spanner_outer:last-child {
+#bvqexhrtni .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qjujfvpmmi .gt_column_spanner {
+#bvqexhrtni .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -370,11 +378,11 @@ Caused by warning:
   width: 100%;
 }
 
-#qjujfvpmmi .gt_spanner_row {
+#bvqexhrtni .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qjujfvpmmi .gt_group_heading {
+#bvqexhrtni .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -400,7 +408,7 @@ Caused by warning:
   text-align: left;
 }
 
-#qjujfvpmmi .gt_empty_group_heading {
+#bvqexhrtni .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -415,15 +423,15 @@ Caused by warning:
   vertical-align: middle;
 }
 
-#qjujfvpmmi .gt_from_md > :first-child {
+#bvqexhrtni .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qjujfvpmmi .gt_from_md > :last-child {
+#bvqexhrtni .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qjujfvpmmi .gt_row {
+#bvqexhrtni .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -442,7 +450,7 @@ Caused by warning:
   overflow-x: hidden;
 }
 
-#qjujfvpmmi .gt_stub {
+#bvqexhrtni .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -455,7 +463,7 @@ Caused by warning:
   padding-right: 5px;
 }
 
-#qjujfvpmmi .gt_stub_row_group {
+#bvqexhrtni .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -469,15 +477,15 @@ Caused by warning:
   vertical-align: top;
 }
 
-#qjujfvpmmi .gt_row_group_first td {
+#bvqexhrtni .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qjujfvpmmi .gt_row_group_first th {
+#bvqexhrtni .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qjujfvpmmi .gt_summary_row {
+#bvqexhrtni .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -487,16 +495,16 @@ Caused by warning:
   padding-right: 5px;
 }
 
-#qjujfvpmmi .gt_first_summary_row {
+#bvqexhrtni .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_first_summary_row.thick {
+#bvqexhrtni .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qjujfvpmmi .gt_last_summary_row {
+#bvqexhrtni .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -506,7 +514,7 @@ Caused by warning:
   border-bottom-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_grand_summary_row {
+#bvqexhrtni .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -516,7 +524,7 @@ Caused by warning:
   padding-right: 5px;
 }
 
-#qjujfvpmmi .gt_first_grand_summary_row {
+#bvqexhrtni .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -526,7 +534,7 @@ Caused by warning:
   border-top-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_last_grand_summary_row_top {
+#bvqexhrtni .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -536,11 +544,11 @@ Caused by warning:
   border-bottom-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_striped {
+#bvqexhrtni .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qjujfvpmmi .gt_table_body {
+#bvqexhrtni .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -549,7 +557,7 @@ Caused by warning:
   border-bottom-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_footnotes {
+#bvqexhrtni .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -563,7 +571,7 @@ Caused by warning:
   border-right-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_footnote {
+#bvqexhrtni .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -572,7 +580,7 @@ Caused by warning:
   padding-right: 5px;
 }
 
-#qjujfvpmmi .gt_sourcenotes {
+#bvqexhrtni .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -586,7 +594,7 @@ Caused by warning:
   border-right-color: #D3D3D3;
 }
 
-#qjujfvpmmi .gt_sourcenote {
+#bvqexhrtni .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -594,77 +602,77 @@ Caused by warning:
   padding-right: 5px;
 }
 
-#qjujfvpmmi .gt_left {
+#bvqexhrtni .gt_left {
   text-align: left;
 }
 
-#qjujfvpmmi .gt_center {
+#bvqexhrtni .gt_center {
   text-align: center;
 }
 
-#qjujfvpmmi .gt_right {
+#bvqexhrtni .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qjujfvpmmi .gt_font_normal {
+#bvqexhrtni .gt_font_normal {
   font-weight: normal;
 }
 
-#qjujfvpmmi .gt_font_bold {
+#bvqexhrtni .gt_font_bold {
   font-weight: bold;
 }
 
-#qjujfvpmmi .gt_font_italic {
+#bvqexhrtni .gt_font_italic {
   font-style: italic;
 }
 
-#qjujfvpmmi .gt_super {
+#bvqexhrtni .gt_super {
   font-size: 65%;
 }
 
-#qjujfvpmmi .gt_footnote_marks {
+#bvqexhrtni .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qjujfvpmmi .gt_asterisk {
+#bvqexhrtni .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qjujfvpmmi .gt_indent_1 {
+#bvqexhrtni .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qjujfvpmmi .gt_indent_2 {
+#bvqexhrtni .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qjujfvpmmi .gt_indent_3 {
+#bvqexhrtni .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qjujfvpmmi .gt_indent_4 {
+#bvqexhrtni .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qjujfvpmmi .gt_indent_5 {
+#bvqexhrtni .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qjujfvpmmi .katex-display {
+#bvqexhrtni .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qjujfvpmmi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bvqexhrtni div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 11%">
 <col style="width: 11%">
@@ -744,58 +752,45 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference #</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-descr</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Descriptive Statistics"</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| output-location: slide</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Inline statistics #</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>table1 <span class="ot">&lt;-</span> <span class="fu">tbl_summary</span>(</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  nsdca_cleaned,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> region,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>   <span class="at">include =</span> <span class="fu">c</span>(region, cases, screened, percent_region)) <span class="sc">|&gt;</span> </span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_overall</span>(<span class="at">last =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">inline_text</span>(table1, <span class="at">variable =</span> <span class="st">"percent_region"</span>, <span class="at">column =</span> <span class="st">"stat_1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "3 (2, 5)"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference #</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>total_sample <span class="ot">&lt;-</span> <span class="fu">nrow</span>(nsdca_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</figure>
 </div>
-<p>Descriptive statistics for the <code>Case Count</code>, <code>Number Screened</code>, and <code>California Region</code> variables are presented in <strong>?@tbl-one</strong>.</p>
+</div>
+<p>Descriptive statistics for the <code>Case Count</code>, <code>Number Screened</code>, and <code>California Region</code> variables are presented in <a href="#tbl-one" class="quarto-xref">Table&nbsp;1</a>.</p>
 <p>There were 99 California regions.</p>
 <ol start="2" type="1">
 <li><p>Fit a regression and present well-formatted results from the regression (1 pt)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference #</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-two</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Linear Regression results"</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a linear regression model predicting 'Case Count' from 'Number Screened' #</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>linear_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> screened, <span class="at">data =</span> nsdca_cleaned)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Present the regression results using {gtsummary} #</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(linear_model, </span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">intercept =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">label =</span> <span class="fu">list</span>(screened <span class="sc">~</span> <span class="st">"Number Screened"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>linear_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> screened, <span class="at">data =</span> nsdca_cleaned)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Present the regression results using {gtsummary} #</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(linear_model, </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">intercept =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">label =</span> <span class="fu">list</span>(screened <span class="sc">~</span> <span class="st">"Number Screened"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-two" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-two-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Linear Regression results
+</figcaption>
+<div aria-describedby="tbl-two-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="qpiaeockwx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qpiaeockwx table {
+<div id="rarpldqmvk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rarpldqmvk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qpiaeockwx thead, #qpiaeockwx tbody, #qpiaeockwx tfoot, #qpiaeockwx tr, #qpiaeockwx td, #qpiaeockwx th {
+#rarpldqmvk thead, #rarpldqmvk tbody, #rarpldqmvk tfoot, #rarpldqmvk tr, #rarpldqmvk td, #rarpldqmvk th {
   border-style: none;
 }
 
-#qpiaeockwx p {
+#rarpldqmvk p {
   margin: 0;
   padding: 0;
 }
 
-#qpiaeockwx .gt_table {
+#rarpldqmvk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -821,12 +816,12 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-left-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_caption {
+#rarpldqmvk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qpiaeockwx .gt_title {
+#rarpldqmvk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -838,7 +833,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-bottom-width: 0;
 }
 
-#qpiaeockwx .gt_subtitle {
+#rarpldqmvk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -850,7 +845,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-top-width: 0;
 }
 
-#qpiaeockwx .gt_heading {
+#rarpldqmvk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -862,13 +857,13 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-right-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_bottom_border {
+#rarpldqmvk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_col_headings {
+#rarpldqmvk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -883,7 +878,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-right-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_col_heading {
+#rarpldqmvk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -903,7 +898,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   overflow-x: hidden;
 }
 
-#qpiaeockwx .gt_column_spanner_outer {
+#rarpldqmvk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -915,15 +910,15 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 4px;
 }
 
-#qpiaeockwx .gt_column_spanner_outer:first-child {
+#rarpldqmvk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qpiaeockwx .gt_column_spanner_outer:last-child {
+#rarpldqmvk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qpiaeockwx .gt_column_spanner {
+#rarpldqmvk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -935,11 +930,11 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   width: 100%;
 }
 
-#qpiaeockwx .gt_spanner_row {
+#rarpldqmvk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qpiaeockwx .gt_group_heading {
+#rarpldqmvk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -965,7 +960,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   text-align: left;
 }
 
-#qpiaeockwx .gt_empty_group_heading {
+#rarpldqmvk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -980,15 +975,15 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   vertical-align: middle;
 }
 
-#qpiaeockwx .gt_from_md > :first-child {
+#rarpldqmvk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qpiaeockwx .gt_from_md > :last-child {
+#rarpldqmvk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qpiaeockwx .gt_row {
+#rarpldqmvk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1007,7 +1002,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   overflow-x: hidden;
 }
 
-#qpiaeockwx .gt_stub {
+#rarpldqmvk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1020,7 +1015,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 5px;
 }
 
-#qpiaeockwx .gt_stub_row_group {
+#rarpldqmvk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1034,15 +1029,15 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   vertical-align: top;
 }
 
-#qpiaeockwx .gt_row_group_first td {
+#rarpldqmvk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qpiaeockwx .gt_row_group_first th {
+#rarpldqmvk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qpiaeockwx .gt_summary_row {
+#rarpldqmvk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1052,16 +1047,16 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 5px;
 }
 
-#qpiaeockwx .gt_first_summary_row {
+#rarpldqmvk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_first_summary_row.thick {
+#rarpldqmvk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qpiaeockwx .gt_last_summary_row {
+#rarpldqmvk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1071,7 +1066,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-bottom-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_grand_summary_row {
+#rarpldqmvk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1081,7 +1076,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 5px;
 }
 
-#qpiaeockwx .gt_first_grand_summary_row {
+#rarpldqmvk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1091,7 +1086,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-top-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_last_grand_summary_row_top {
+#rarpldqmvk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1101,11 +1096,11 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-bottom-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_striped {
+#rarpldqmvk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qpiaeockwx .gt_table_body {
+#rarpldqmvk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1114,7 +1109,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-bottom-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_footnotes {
+#rarpldqmvk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1128,7 +1123,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-right-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_footnote {
+#rarpldqmvk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1137,7 +1132,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 5px;
 }
 
-#qpiaeockwx .gt_sourcenotes {
+#rarpldqmvk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1151,7 +1146,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   border-right-color: #D3D3D3;
 }
 
-#qpiaeockwx .gt_sourcenote {
+#rarpldqmvk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1159,77 +1154,77 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
   padding-right: 5px;
 }
 
-#qpiaeockwx .gt_left {
+#rarpldqmvk .gt_left {
   text-align: left;
 }
 
-#qpiaeockwx .gt_center {
+#rarpldqmvk .gt_center {
   text-align: center;
 }
 
-#qpiaeockwx .gt_right {
+#rarpldqmvk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qpiaeockwx .gt_font_normal {
+#rarpldqmvk .gt_font_normal {
   font-weight: normal;
 }
 
-#qpiaeockwx .gt_font_bold {
+#rarpldqmvk .gt_font_bold {
   font-weight: bold;
 }
 
-#qpiaeockwx .gt_font_italic {
+#rarpldqmvk .gt_font_italic {
   font-style: italic;
 }
 
-#qpiaeockwx .gt_super {
+#rarpldqmvk .gt_super {
   font-size: 65%;
 }
 
-#qpiaeockwx .gt_footnote_marks {
+#rarpldqmvk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qpiaeockwx .gt_asterisk {
+#rarpldqmvk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qpiaeockwx .gt_indent_1 {
+#rarpldqmvk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qpiaeockwx .gt_indent_2 {
+#rarpldqmvk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qpiaeockwx .gt_indent_3 {
+#rarpldqmvk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qpiaeockwx .gt_indent_4 {
+#rarpldqmvk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qpiaeockwx .gt_indent_5 {
+#rarpldqmvk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qpiaeockwx .katex-display {
+#rarpldqmvk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qpiaeockwx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rarpldqmvk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
@@ -1262,85 +1257,92 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 </div>
 </div>
 </div>
-<p>The results, shown in <strong>?@tbl-two</strong> indicate that the number of screened newborns is a statistically significant predictor of the number of cases.</p></li>
+</figure>
+</div>
+</div>
+<p>The results shown in <a href="#tbl-two" class="quarto-xref">Table&nbsp;2</a> indicate that the number of screened newborns is a statistically significant predictor of the number of cases.</p></li>
 <li><p>Create a figure (1 pt)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference #</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-hist-case</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Case Count Distribution"</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># A histogram of the 'Case Count' #</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>histogram_figure <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nsdca_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> cases)) <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">25</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Histogram of Case Counts"</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Case Count"</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(histogram_figure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>histogram_figure <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nsdca_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> cases)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">25</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Histogram of Case Counts"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Case Count"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(histogram_figure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="EPI590R_Final_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<div id="fig-hists-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hists-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="EPI590R_Final_files/figure-html/fig-hists-1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hists-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Case Count Distribution
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference #</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-hist</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Percent of All Disorders in Region and Case Count Distribution"</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nsdca_cleaned,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> percent_region,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> cases,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> region</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Percent of All Disorders in Region and Case Count"</span>,</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Dimensions for Central Coast, Los Angeles, Northern Central Valley, Northern, Mountain, and Desert Areas, San Francisco Bay Area, South Coast, Southern Inland Empire"</span> ,</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"% of All Disorders in Region"</span>, <span class="at">y =</span> <span class="st">"Case Count"</span>,</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"Region"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="EPI590R_Final_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference #</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>total_regions <span class="ot">&lt;-</span> <span class="fu">n_distinct</span>(nsdca_cleaned<span class="sc">$</span>region)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(total_regions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The distribution of <code>Case Count</code> is right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in <a href="#fig-hists-1" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nsdca_cleaned,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> percent_region,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> cases,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> region</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Percent of All Disorders in Region and Case Count"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Dimensions for Central Coast, Los Angeles, Northern Central Valley, Northern, Mountain, and Desert Areas, San Francisco Bay Area, South Coast, Southern Inland Empire"</span> ,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"% of All Disorders in Region"</span>, <span class="at">y =</span> <span class="st">"Case Count"</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"Region"</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference #</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>total_regions <span class="ot">&lt;-</span> <span class="fu">n_distinct</span>(nsdca_cleaned<span class="sc">$</span>region)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(total_regions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7</code></pre>
 </div>
+<div class="cell-output-display">
+<div id="fig-hists-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hists-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="EPI590R_Final_files/figure-html/fig-hists-2-1.png" class="img-fluid figure-img" width="672">
 </div>
-<p>The distribution of <code>Case Count</code> is right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in <strong>?@fig-hist-case</strong></p>
-<p><strong>?@fig-hist</strong> contains a scatter plot across <code>total_regions</code> regions.</p></li>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hists-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Percent of All Disorders in Region and Case Count Distribution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-hists-2" class="quarto-xref">Figure&nbsp;2</a> is a scatter plot of the <code>Percent of All Disorders in Region</code> and <code>Case Count</code> variables across 7 regions.</p></li>
 <li><p>Write <em>and</em> use a function that does something with the data (1 pt)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A function that calculates the mean and standard deviation for a given numeric variable #</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>calculate_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(data, variable) {</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    data <span class="sc">%&gt;%</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fu">mean</span>({{ variable }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>({{ variable }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Functions to calculate stats for 'Case Count' and 'Number Screened' and store the results in a list #</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>case_stats <span class="ot">&lt;-</span> <span class="fu">calculate_stats</span>(nsdca_cleaned, cases)</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>case_stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A function that calculates the mean and standard deviation for a given numeric variable #</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>calculate_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(data, variable) {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    data <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fu">mean</span>({{ variable }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>({{ variable }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Functions to calculate stats for 'Case Count' and 'Number Screened' and store the results in a list #</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>case_stats <span class="ot">&lt;-</span> <span class="fu">calculate_stats</span>(nsdca_cleaned, cases)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>case_stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
    mean    sd
   &lt;dbl&gt; &lt;dbl&gt;
 1  58.2  109.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>screened_stats <span class="ot">&lt;-</span> <span class="fu">calculate_stats</span>(nsdca_cleaned, screened)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>screened_stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>screened_stats <span class="ot">&lt;-</span> <span class="fu">calculate_stats</span>(nsdca_cleaned, screened)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>screened_stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
      mean      sd
@@ -1351,20 +1353,20 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 <p>The mean number of cases is 58.1919192 while the standard deviation of cases is 109.0573409.</p></li>
 <li><p>The table, regression results, and figure, with appropriate captions (1 pt)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inline stastistics for univariate regression #</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>screened_table <span class="ot">&lt;-</span> <span class="fu">tbl_uvregression</span>(</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  nsdca_cleaned,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> screened,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">include =</span> <span class="fu">c</span>(</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    region, screened, cases, percent_region</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> lm</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">inline_text</span>(screened_table, <span class="at">variable =</span> <span class="st">"cases"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inline stastistics for univariate regression #</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>screened_table <span class="ot">&lt;-</span> <span class="fu">tbl_uvregression</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  nsdca_cleaned,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> screened,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">include =</span> <span class="fu">c</span>(</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    region, screened, cases, percent_region</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> lm</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">inline_text</span>(screened_table, <span class="at">variable =</span> <span class="st">"cases"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "730 (95% CI 157, 1,303; p=0.013)"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inline_text</span>(screened_table, <span class="at">variable =</span> <span class="st">"cases"</span>, <span class="at">pattern =</span> <span class="st">"{p.value}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inline_text</span>(screened_table, <span class="at">variable =</span> <span class="st">"cases"</span>, <span class="at">pattern =</span> <span class="st">"{p.value}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "p=0.013"</code></pre>
 </div>

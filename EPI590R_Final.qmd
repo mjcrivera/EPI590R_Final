@@ -1,5 +1,5 @@
 ---
-title: "EPI590R_Final"
+title: "EPI590R Final Project"
 author: "Monica Rivera"
 format: html
 editor: visual
@@ -43,12 +43,7 @@ nsdca_cleaned <- nsdca %>%
 str(nsdca_cleaned)
 
 # Save the cleaned data to a new CSV file #
-write_csv(nsdca_cleaned, "cleaned_nsdca.csv")
-
-# Create data/clean folder #
-if (!dir.exists(here::here("data", "clean"))) {
-  dir.create(here::here("data", "clean"))
-}
+write_csv(nsdca_cleaned,here::here("data", "clean", "cleaned_nsdca.csv"))
 
 # Save the complete-case data #
 write_rds(nsdca_cleaned, here::here("data", "clean", "nsdca_cleaned_complete.rds"))
@@ -57,13 +52,8 @@ write_rds(nsdca_cleaned, here::here("data", "clean", "nsdca_cleaned_complete.rds
 1.  Create a `{gtsummary}` table of descriptive statistics about your data (1 pt)
 
 ```{r}
-# Cross-reference#
 #| label: tbl-one
-#| tbl-cap: "Descriptive Statistics for 'Case Count, Number Screened, and Percent of All Disorders in Region"
-#| message: false
-#| echo: true
-
-# The table will show descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column. #
+#| tbl-cap: "Descriptive Statistics for Case Count, Number Screened, and Percent of All Disorders in Region"
 tbl_summary(
   nsdca_cleaned,
   by = region,
@@ -81,12 +71,9 @@ modify_table_styling(
   footnote = "see https://catalog.data.gov/dataset/newborn-screening-disorders-426e4"
 )
 
-# Cross-reference #
-#| label: tbl-descr
-#| tbl-cap: "Descriptive Statistics"
-#| output-location: slide
+# The above is a cross-reference and a table shows the descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column. #
 
-# Inline statistics #
+# Inline descriptive statistics #
 table1 <- tbl_summary(
   nsdca_cleaned,
   by = region,
@@ -105,30 +92,23 @@ There were `r total_sample` California regions.
 2.  Fit a regression and present well-formatted results from the regression (1 pt)
 
     ```{r}
-    # Cross-reference #
     #| label: tbl-two
     #| tbl-cap: "Linear Regression results"
-
-    # Fit a linear regression model predicting 'Case Count' from 'Number Screened' #
     linear_model <- lm(cases ~ screened, data = nsdca_cleaned)
 
     # Present the regression results using {gtsummary} #
     tbl_regression(linear_model, 
                    intercept = TRUE, 
                    label = list(screened ~ "Number Screened"))
-
     ```
 
-    The results, shown in @tbl-two indicate that the number of screened newborns is a statistically significant predictor of the number of cases.
+    The results shown in @tbl-two indicate that the number of screened newborns is a statistically significant predictor of the number of cases.
 
 3.  Create a figure (1 pt)
 
     ```{r}
-    # Cross-reference #
-    #| label: fig-hist-case
+    #| label: fig-hists-1
     #| fig-cap: "Case Count Distribution"
-
-    # A histogram of the 'Case Count' #
     histogram_figure <- ggplot(nsdca_cleaned, aes(x = cases)) +
       geom_histogram(binwidth = 25, fill = "lightblue", color = "black") +
       labs(
@@ -137,11 +117,13 @@ There were `r total_sample` California regions.
         y = "Frequency"
       )
     print(histogram_figure)
+    ```
 
-    # Cross-reference #
-    #| label: fig-hist
+    The distribution of `Case Count` is right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in @fig-hists-1.
+
+    ```{r}
+    #| label: fig-hists-2
     #| fig-cap: "Percent of All Disorders in Region and Case Count Distribution"
-
     ggplot(data = nsdca_cleaned,
     mapping = aes(
     x = percent_region,
@@ -160,9 +142,7 @@ There were `r total_sample` California regions.
     print(total_regions)
     ```
 
-    The distribution of `Case Count` is right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in @fig-hist-case
-
-    @fig-hist contains a scatter plot across `total_regions` regions.
+    @fig-hists-2 is a scatter plot of the `Percent of All Disorders in Region` and `Case Count` variables across `r total_regions` regions.
 
 4.  Write *and* use a function that does something with the data (1 pt)
 
