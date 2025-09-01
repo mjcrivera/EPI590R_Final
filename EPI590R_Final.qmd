@@ -7,9 +7,9 @@ echo: true
 eval: true
 ---
 
-## EPI 590R Final Project
+## Newborn Screening Disorders data set
 
-Newborn Screening Disorders dataset: [**Screening Disorders by California Region**](https://catalog.data.gov/dataset/newborn-screening-disorders-426e4/resource/54bb2656-0073-4380-bbc7-7ac7919aee38 "Screening Disorders by California Region")
+The [**Screening Disorders by California Region**](https://catalog.data.gov/dataset/newborn-screening-disorders-426e4/resource/54bb2656-0073-4380-bbc7-7ac7919aee38 "Screening Disorders by California Region") data set is a table from an aggregated (2009-2019) public data on newborn screening disorders. The table used in this analysis contains counts of disorders that have been diagnosed by the California Newborn Screening Program.
 
 ```{r}
 # Load packages #
@@ -57,8 +57,13 @@ write_rds(nsdca_cleaned, here::here("data", "clean", "nsdca_cleaned_complete.rds
 1.  Create a `{gtsummary}` table of descriptive statistics about your data (1 pt)
 
 ```{r}
-# The table will show descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column. #
+# Cross-reference #
+#| label: tbl-one
+#| tbl-cap: "Descriptive Statistics for 'Case Count, Number Screened, and Percent of All Disorders in Region"
+#| message: false
+#| echo: true
 
+# The table will show descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column. #
 tbl_summary(
   nsdca_cleaned,
   by = region,
@@ -76,20 +81,34 @@ modify_table_styling(
   footnote = "see https://catalog.data.gov/dataset/newborn-screening-disorders-426e4"
 )
 
+# Cross-reference #
 #| label: tbl-descr
 #| tbl-cap: "Descriptive Statistics"
 #| output-location: slide
+
+# Inline statistics #
 table1 <- tbl_summary(
   nsdca_cleaned,
   by = region,
    include = c(region, cases, screened, percent_region)) |> 
   add_overall(last = TRUE)
 inline_text(table1, variable = "percent_region", column = "stat_1")
+
+# Cross-reference #
+total_sample <- nrow(nsdca_cleaned)
 ```
+
+Descriptive statistics for the `Case Count`, `Number Screened`, and `California Region` variables are presented in @tbl-one.
+
+There were `r total_sample` California regions.
 
 2.  Fit a regression and present well-formatted results from the regression (1 pt)
 
     ```{r}
+    # Cross-reference #
+    #| label: tbl-two
+    #| tbl-cap: "Linear Regression results"
+
     # Fit a linear regression model predicting 'Case Count' from 'Number Screened' #
     linear_model <- lm(cases ~ screened, data = nsdca_cleaned)
 
@@ -100,9 +119,15 @@ inline_text(table1, variable = "percent_region", column = "stat_1")
 
     ```
 
+    The results, shown in @tbl-two indicate that the number of screened newborns is a statistically significant predictor of the number of cases.
+
 3.  Create a figure (1 pt)
 
     ```{r}
+    # Cross-reference #
+    #| label: fig-hist
+    #| fig-cap: "Case Count Distribution"
+
     # A histogram of the 'Case Count' #
     histogram_figure <- ggplot(nsdca_cleaned, aes(x = cases)) +
       geom_histogram(binwidth = 25, fill = "lightblue", color = "black") +
@@ -112,6 +137,10 @@ inline_text(table1, variable = "percent_region", column = "stat_1")
         y = "Frequency"
       )
     print(histogram_figure)
+
+    # Cross-reference #
+    #| label: fig-three
+    #| fig-cap: "Percent of All Disorders in Region and Case Count Distribution"
 
     # A scatter plot of 'Percent of All Disorders in Region' and 'Case Count' #
     ggplot(data = nsdca_cleaned,
@@ -127,6 +156,8 @@ inline_text(table1, variable = "percent_region", column = "stat_1")
     x = "% of All Disorders in Region", y = "Case Count",
     color = "Region")
     ```
+
+    The distribution of `Case Count` is right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in \@fig-hist. \@fig-three contains a scatter plot across `total_sample` regions.
 
 4.  Write *and* use a function that does something with the data (1 pt)
 
@@ -150,10 +181,12 @@ inline_text(table1, variable = "percent_region", column = "stat_1")
     screened_stats
     ```
 
+    The mean for cases is `calculate_stats$mean` while the standard deviation is `calculate_stats$sd`.
+
 5.  The table, regression results, and figure, with appropriate captions (1 pt)
 
     ```{r}
-
+    # Inline stastistics for univariate regression #
     screened_table <- tbl_uvregression(
       nsdca_cleaned,
       y = screened,
@@ -163,7 +196,10 @@ inline_text(table1, variable = "percent_region", column = "stat_1")
       method = lm
     )
     inline_text(screened_table, variable = "cases")
+    inline_text(screened_table, variable = "cases", pattern = "{p.value}")
     ```
+
+    The p-value for the univariate regression for `screened` is `r p.value`.
 
 6.  Read in a dataset and save a file (can be data, table, figure, etc.) Use the `{here}` package every time you refer to file paths (at least twice) (1 pt)
 
