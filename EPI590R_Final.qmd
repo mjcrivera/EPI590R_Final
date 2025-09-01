@@ -3,25 +3,68 @@ title: "EPI590R_Final"
 author: "Monica Rivera"
 format: html
 editor: visual
+echo: true
+eval: true
 ---
 
-## Quarto
+## EPI 590R Final Project
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Newborn Screening Disorders dataset: [**Screening Disorders by California Region**](https://catalog.data.gov/dataset/newborn-screening-disorders-426e4/resource/54bb2656-0073-4380-bbc7-7ac7919aee38 "Screening Disorders by California Region")
 
 ```{r}
-1 + 1
+# Load packages #
+library(tidyverse)
+library(gtsummary)
+
+# Load data #
+nsdca <- read_csv(here::here("data", "raw", "nsdca.csv"))
+                  
+# Clean column names #
+nsdca <- nsdca %>%
+  rename(
+    region = `California Region`,
+    disease_type = `Disease Type`,
+    cases = `Case\nCount`,
+    screened = `Number\nScreened`,
+    percent_region = `Percent\nof All\nDisorders\nin Region`
+  ) %>%
+
+# Convert percent column to numeric & create factor for categorical variable: region #
+  mutate(
+    percent_region = as.numeric(percent_region),
+    region = factor(region, labels = c("Los Angeles", "Central Coast", "Northern Central Valley", "Northern, Mountain, and Desert Areas", "San Francisco Bay Area", "South Coast", "Southern Inland Empire")
+))
+
+# Remove rows with missing values #
+nsdca_cleaned <- nsdca %>%
+  filter(!is.na(percent_region))
+
+# Display the structure of the cleaned data frame #
+str(nsdca_cleaned)
+
+# Save the cleaned data to a new CSV file #
+write_csv(nsdca_cleaned, "cleaned_nsdca.csv")
+
+# Create data/clean folder #
+if (!dir.exists(here::here("data", "clean"))) {
+  dir.create(here::here("data", "clean"))
+}
+
+# Save the complete-case data #
+write_rds(nsdca_cleaned, here::here("data", "clean", "nsdca_cleaned_complete.rds"))
 ```
 
-You can add options to executable code like this
+1.  Create a `{gtsummary}` table of descriptive statistics about your data (1 pt)
 
 ```{r}
 #| echo: false
 2 * 2
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+2.  Fit a regression and present well-formatted results from the regression (1 pt)
+3.  Create a figure (1 pt)
+4.  Write *and* use a function that does something with the data (1 pt)
+5.  The table, regression results, and figure, with appropriate captions (1 pt)
+6.  Read in a dataset and save a file (can be data, table, figure, etc.) Use the `{here}` package every time you refer to file paths (at least twice) (1 pt)
+7.  Commit and push your work to GitHub as you go (1 pt)
+8.  In a README file, include any notes necessary for us to easily reproduce your analysis (e.g., “Run `script.R` and then render `document.qmd`”) as well as some information about your data (1 pt)
