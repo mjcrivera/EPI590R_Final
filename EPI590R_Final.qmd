@@ -121,7 +121,23 @@ modify_table_styling(
 4.  Write *and* use a function that does something with the data (1 pt)
 
     ```{r}
+    # A function that calculates the mean and standard deviation for a given numeric variable #
+    calculate_stats <- function(data, variable) {
+    	data %>%
+    		summarise(
+    			mean = mean({{ variable }}, na.rm = TRUE),
+    			sd = sd({{ variable }}, na.rm = TRUE)
+    		)
+    }
 
+    # Functions to calculate stats for 'Case Count' and 'Number Screened' and store the results in a list #
+    case_count_stats <- calculate_stats(nsdca_cleaned, cases)
+
+    case_count_stats
+
+    screened_stats <- calculate_stats(nsdca_cleaned, screened)
+
+    screened_stats
     ```
 
 5.  The table, regression results, and figure, with appropriate captions (1 pt)
