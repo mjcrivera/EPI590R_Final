@@ -49,7 +49,7 @@ write_csv(nsdca_cleaned,here::here("data", "clean", "cleaned_nsdca.csv"))
 write_rds(nsdca_cleaned, here::here("data", "clean", "nsdca_cleaned_complete.rds"))
 ```
 
-1.  Create a `{gtsummary}` table of descriptive statistics about your data (1 pt)
+1.  Create a `{gtsummary}` table of descriptive statistics about your data (1 pt).
 
 ```{r}
 #| label: tbl-one
@@ -71,7 +71,7 @@ modify_table_styling(
   footnote = "see https://catalog.data.gov/dataset/newborn-screening-disorders-426e4"
 )
 
-# The above is a cross-reference and a table shows the descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column. #
+# The above is a cross-reference and a table showing the descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column #
 
 # Inline descriptive statistics #
 table1 <- tbl_summary(
@@ -89,14 +89,16 @@ Descriptive statistics for the `Case Count`, `Number Screened`, and `California 
 
 There were `r total_sample` California regions.
 
-2.  Fit a regression and present well-formatted results from the regression (1 pt)
+2.  Fit a regression and present well-formatted results from the regression (1 pt).
 
     ```{r}
     #| label: tbl-two
     #| tbl-cap: "Linear Regression results"
     linear_model <- lm(cases ~ screened, data = nsdca_cleaned)
 
-    # Present the regression results using {gtsummary} #
+    # The above is a cross-reference and a linear regression results table #
+
+    # Regression results using {gtsummary} #
     tbl_regression(linear_model, 
                    intercept = TRUE, 
                    label = list(screened ~ "Number Screened"))
@@ -104,7 +106,7 @@ There were `r total_sample` California regions.
 
     The results shown in @tbl-two indicate that the number of screened newborns is a statistically significant predictor of the number of cases.
 
-3.  Create a figure (1 pt)
+3.  Create a figure (1 pt).
 
     ```{r}
     #| label: fig-hists-1
@@ -117,6 +119,8 @@ There were `r total_sample` California regions.
         y = "Frequency"
       )
     print(histogram_figure)
+
+    # The above is a cross-reference and a histogram of the case distribution #
     ```
 
     The distribution of `Case Count` is right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in @fig-hists-1.
@@ -136,6 +140,8 @@ There were `r total_sample` California regions.
     subtitle = "Dimensions for Central Coast, Los Angeles, Northern Central Valley, Northern, Mountain, and Desert Areas, San Francisco Bay Area, South Coast, Southern Inland Empire" ,
     x = "% of All Disorders in Region", y = "Case Count",
     color = "Region")
+
+    # The above is a cross-reference and a scatter plot between Percent of All Disorders in Region and Case Count #
 
     # Cross-reference #
     total_regions <- n_distinct(nsdca_cleaned$region)
