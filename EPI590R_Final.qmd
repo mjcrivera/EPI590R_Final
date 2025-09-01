@@ -1,5 +1,5 @@
 ---
-title: "EPI590R Final Project"
+title: "EPI 590R Final Project"
 author: "Monica Rivera"
 format: html
 editor: visual
@@ -16,7 +16,7 @@ The [**Screening Disorders by California Region**](https://catalog.data.gov/data
 library(tidyverse)
 library(gtsummary)
 
-# Load data #
+# Read data set #
 nsdca <- read_csv(here::here("data", "raw", "nsdca.csv"))
                   
 # Clean column names #
@@ -29,7 +29,7 @@ nsdca <- nsdca %>%
     percent_region = `Percent\nof All\nDisorders\nin Region`
   ) %>%
 
-# Convert percent column to numeric & create factor for categorical variable: region #
+# Convert percent_region column to numeric & create factor for categorical variable: region #
   mutate(
     percent_region = as.numeric(percent_region),
     region = factor(region, labels = c("Central Coast", "Los Angeles", "Northern Central Valley", "Northern, Mountain, and Desert Areas", "San Francisco Bay Area", "South Coast", "Southern Inland Empire")
@@ -70,8 +70,7 @@ modify_table_styling(
   rows = label == "Percent of All Disorders in Region",
   footnote = "see https://catalog.data.gov/dataset/newborn-screening-disorders-426e4"
 )
-
-# The above is a cross-reference and a table showing the descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column #
+# The above is a cross-reference for a table displaying the descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column #
 
 # Inline descriptive statistics #
 table1 <- tbl_summary(
@@ -85,9 +84,9 @@ inline_text(table1, variable = "percent_region", column = "stat_1")
 total_sample <- nrow(nsdca_cleaned)
 ```
 
-Descriptive statistics for the `Case Count`, `Number Screened`, and `California Region` variables are presented in @tbl-one.
+Descriptive statistics for the `Case Count`, `Number Screened`, and `California Region` variables were presented in @tbl-one.
 
-There were `r total_sample` California regions.
+There were `r total_sample` California regions observed.
 
 2.  Fit a regression and present well-formatted results from the regression (1 pt).
 
@@ -95,8 +94,7 @@ There were `r total_sample` California regions.
     #| label: tbl-two
     #| tbl-cap: "Linear Regression results"
     linear_model <- lm(cases ~ screened, data = nsdca_cleaned)
-
-    # The above is a cross-reference and a linear regression results table #
+    # The above is a cross-reference for a linear regression results table #
 
     # Regression results using {gtsummary} #
     tbl_regression(linear_model, 
@@ -104,7 +102,7 @@ There were `r total_sample` California regions.
                    label = list(screened ~ "Number Screened"))
     ```
 
-    The results shown in @tbl-two indicate that the number of screened newborns is a statistically significant predictor of the number of cases.
+    The results shown in @tbl-two indicated the number of screened newborns was a statistically significant predictor of the number of cases.
 
 3.  Create a figure (1 pt).
 
@@ -119,11 +117,10 @@ There were `r total_sample` California regions.
         y = "Frequency"
       )
     print(histogram_figure)
-
-    # The above is a cross-reference and a histogram of the case distribution #
+    # The above is a cross-reference for a histogram of the case distribution #
     ```
 
-    The distribution of `Case Count` is right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in @fig-hists-1.
+    The distribution of `Case Count` was right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in @fig-hists-1.
 
     ```{r}
     #| label: fig-hists-2
@@ -140,8 +137,7 @@ There were `r total_sample` California regions.
     subtitle = "Dimensions for Central Coast, Los Angeles, Northern Central Valley, Northern, Mountain, and Desert Areas, San Francisco Bay Area, South Coast, Southern Inland Empire" ,
     x = "% of All Disorders in Region", y = "Case Count",
     color = "Region")
-
-    # The above is a cross-reference and a scatter plot between Percent of All Disorders in Region and Case Count #
+    # The above is a cross-reference for a scatter plot between 'Percent of All Disorders' in 'Region and Case Count' #
 
     # Cross-reference #
     total_regions <- n_distinct(nsdca_cleaned$region)
@@ -150,7 +146,7 @@ There were `r total_sample` California regions.
 
     @fig-hists-2 is a scatter plot of the `Percent of All Disorders in Region` and `Case Count` variables across `r total_regions` regions.
 
-4.  Write *and* use a function that does something with the data (1 pt)
+4.  Write *and* use a function that does something with the data (1 pt).
 
     ```{r}
     # A function that calculates the mean and standard deviation for a given numeric variable #
@@ -172,9 +168,9 @@ There were `r total_sample` California regions.
     screened_stats
     ```
 
-    The mean number of cases is `r case_stats$mean` while the standard deviation of cases is `r case_stats$sd`.
+    The mean number of cases was `r case_stats$mean` while the standard deviation of cases was `r case_stats$sd`.
 
-5.  The table, regression results, and figure, with appropriate captions (1 pt)
+5.  The table, regression results, and figure, with appropriate captions (1 pt).
 
     ```{r}
     # Inline stastistics for univariate regression #
@@ -192,8 +188,8 @@ There were `r total_sample` California regions.
 
     The regression analysis revealed that the `Case Count` variable was a significant predictor of the outcome, with a p-value of `r gtsummary::inline_text(screened_table, variable = "cases", pattern = "{p.value}")`.
 
-6.  Read in a data set and save a file (can be data, table, figure, etc.) Use the `{here}` package every time you refer to file paths (at least twice) (1 pt)
+6.  Read in a data set and save a file (can be data, table, figure, etc.) Use the `{here}` package every time you refer to file paths (at least twice) (1 pt).
 
-7.  Commit and push your work to GitHub as you go (1 pt)
+7.  Commit and push your work to GitHub as you go (1 pt).
 
-8.  In a README file, include any notes necessary for us to easily reproduce your analysis (e.g., “Run `script.R` and then render `document.qmd`”) as well as some information about your data (1 pt)
+8.  In a README file, include any notes necessary for us to easily reproduce your analysis (e.g., “Run `script.R` and then render `document.qmd`”) as well as some information about your data (1 pt).

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Monica Rivera">
 
-<title>EPI590R Final Project</title>
+<title>EPI 590R Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">EPI590R Final Project</h1>
+<h1 class="title">EPI 590R Final Project</h1>
 </div>
 
 
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data #</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data set #</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>nsdca <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"nsdca.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 102 Columns: 5
@@ -150,7 +150,7 @@ Screened
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_region =</span> <span class="st">`</span><span class="at">Percent</span><span class="sc">\n</span><span class="at">of All</span><span class="sc">\n</span><span class="at">Disorders</span><span class="sc">\n</span><span class="at">in Region</span><span class="st">`</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert percent column to numeric &amp; create factor for categorical variable: region #</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert percent_region column to numeric &amp; create factor for categorical variable: region #</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_region =</span> <span class="fu">as.numeric</span>(percent_region),</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">region =</span> <span class="fu">factor</span>(region, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Central Coast"</span>, <span class="st">"Los Angeles"</span>, <span class="st">"Northern Central Valley"</span>, <span class="st">"Northern, Mountain, and Desert Areas"</span>, <span class="st">"San Francisco Bay Area"</span>, <span class="st">"South Coast"</span>, <span class="st">"Southern Inland Empire"</span>)</span>
@@ -201,7 +201,7 @@ Caused by warning:
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">rows =</span> label <span class="sc">==</span> <span class="st">"Percent of All Disorders in Region"</span>,</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">footnote =</span> <span class="st">"see https://catalog.data.gov/dataset/newborn-screening-disorders-426e4"</span></span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># The above is a cross-reference and a table showing the descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column #</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># The above is a cross-reference for a table displaying the descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column #</span></span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Inline descriptive statistics #</span></span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>table1 <span class="ot">&lt;-</span> <span class="fu">tbl_summary</span>(</span>
@@ -222,23 +222,23 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
 </figcaption>
 <div aria-describedby="tbl-one-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="bgiucdfmkc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bgiucdfmkc table {
+<div id="itsovgnvcq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#itsovgnvcq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bgiucdfmkc thead, #bgiucdfmkc tbody, #bgiucdfmkc tfoot, #bgiucdfmkc tr, #bgiucdfmkc td, #bgiucdfmkc th {
+#itsovgnvcq thead, #itsovgnvcq tbody, #itsovgnvcq tfoot, #itsovgnvcq tr, #itsovgnvcq td, #itsovgnvcq th {
   border-style: none;
 }
 
-#bgiucdfmkc p {
+#itsovgnvcq p {
   margin: 0;
   padding: 0;
 }
 
-#bgiucdfmkc .gt_table {
+#itsovgnvcq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -264,12 +264,12 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-left-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_caption {
+#itsovgnvcq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bgiucdfmkc .gt_title {
+#itsovgnvcq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -281,7 +281,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-bottom-width: 0;
 }
 
-#bgiucdfmkc .gt_subtitle {
+#itsovgnvcq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -293,7 +293,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-top-width: 0;
 }
 
-#bgiucdfmkc .gt_heading {
+#itsovgnvcq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -305,13 +305,13 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-right-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_bottom_border {
+#itsovgnvcq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_col_headings {
+#itsovgnvcq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -326,7 +326,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-right-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_col_heading {
+#itsovgnvcq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -346,7 +346,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   overflow-x: hidden;
 }
 
-#bgiucdfmkc .gt_column_spanner_outer {
+#itsovgnvcq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -358,15 +358,15 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   padding-right: 4px;
 }
 
-#bgiucdfmkc .gt_column_spanner_outer:first-child {
+#itsovgnvcq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bgiucdfmkc .gt_column_spanner_outer:last-child {
+#itsovgnvcq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bgiucdfmkc .gt_column_spanner {
+#itsovgnvcq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -378,11 +378,11 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   width: 100%;
 }
 
-#bgiucdfmkc .gt_spanner_row {
+#itsovgnvcq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bgiucdfmkc .gt_group_heading {
+#itsovgnvcq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -408,7 +408,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   text-align: left;
 }
 
-#bgiucdfmkc .gt_empty_group_heading {
+#itsovgnvcq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -423,15 +423,15 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   vertical-align: middle;
 }
 
-#bgiucdfmkc .gt_from_md > :first-child {
+#itsovgnvcq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bgiucdfmkc .gt_from_md > :last-child {
+#itsovgnvcq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bgiucdfmkc .gt_row {
+#itsovgnvcq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -450,7 +450,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   overflow-x: hidden;
 }
 
-#bgiucdfmkc .gt_stub {
+#itsovgnvcq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -463,7 +463,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   padding-right: 5px;
 }
 
-#bgiucdfmkc .gt_stub_row_group {
+#itsovgnvcq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -477,15 +477,15 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   vertical-align: top;
 }
 
-#bgiucdfmkc .gt_row_group_first td {
+#itsovgnvcq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bgiucdfmkc .gt_row_group_first th {
+#itsovgnvcq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bgiucdfmkc .gt_summary_row {
+#itsovgnvcq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -495,16 +495,16 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   padding-right: 5px;
 }
 
-#bgiucdfmkc .gt_first_summary_row {
+#itsovgnvcq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_first_summary_row.thick {
+#itsovgnvcq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bgiucdfmkc .gt_last_summary_row {
+#itsovgnvcq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -514,7 +514,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-bottom-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_grand_summary_row {
+#itsovgnvcq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -524,7 +524,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   padding-right: 5px;
 }
 
-#bgiucdfmkc .gt_first_grand_summary_row {
+#itsovgnvcq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -534,7 +534,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-top-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_last_grand_summary_row_top {
+#itsovgnvcq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -544,11 +544,11 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-bottom-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_striped {
+#itsovgnvcq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bgiucdfmkc .gt_table_body {
+#itsovgnvcq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -557,7 +557,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-bottom-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_footnotes {
+#itsovgnvcq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -571,7 +571,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-right-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_footnote {
+#itsovgnvcq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -580,7 +580,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   padding-right: 5px;
 }
 
-#bgiucdfmkc .gt_sourcenotes {
+#itsovgnvcq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -594,7 +594,7 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   border-right-color: #D3D3D3;
 }
 
-#bgiucdfmkc .gt_sourcenote {
+#itsovgnvcq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -602,72 +602,72 @@ Table&nbsp;1: Descriptive Statistics for Case Count, Number Screened, and Percen
   padding-right: 5px;
 }
 
-#bgiucdfmkc .gt_left {
+#itsovgnvcq .gt_left {
   text-align: left;
 }
 
-#bgiucdfmkc .gt_center {
+#itsovgnvcq .gt_center {
   text-align: center;
 }
 
-#bgiucdfmkc .gt_right {
+#itsovgnvcq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bgiucdfmkc .gt_font_normal {
+#itsovgnvcq .gt_font_normal {
   font-weight: normal;
 }
 
-#bgiucdfmkc .gt_font_bold {
+#itsovgnvcq .gt_font_bold {
   font-weight: bold;
 }
 
-#bgiucdfmkc .gt_font_italic {
+#itsovgnvcq .gt_font_italic {
   font-style: italic;
 }
 
-#bgiucdfmkc .gt_super {
+#itsovgnvcq .gt_super {
   font-size: 65%;
 }
 
-#bgiucdfmkc .gt_footnote_marks {
+#itsovgnvcq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bgiucdfmkc .gt_asterisk {
+#itsovgnvcq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bgiucdfmkc .gt_indent_1 {
+#itsovgnvcq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bgiucdfmkc .gt_indent_2 {
+#itsovgnvcq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bgiucdfmkc .gt_indent_3 {
+#itsovgnvcq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bgiucdfmkc .gt_indent_4 {
+#itsovgnvcq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bgiucdfmkc .gt_indent_5 {
+#itsovgnvcq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bgiucdfmkc .katex-display {
+#itsovgnvcq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bgiucdfmkc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#itsovgnvcq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -756,19 +756,18 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 </figure>
 </div>
 </div>
-<p>Descriptive statistics for the <code>Case Count</code>, <code>Number Screened</code>, and <code>California Region</code> variables are presented in <a href="#tbl-one" class="quarto-xref">Table&nbsp;1</a>.</p>
-<p>There were 99 California regions.</p>
+<p>Descriptive statistics for the <code>Case Count</code>, <code>Number Screened</code>, and <code>California Region</code> variables were presented in <a href="#tbl-one" class="quarto-xref">Table&nbsp;1</a>.</p>
+<p>There were 99 California regions observed.</p>
 <ol start="2" type="1">
 <li><p>Fit a regression and present well-formatted results from the regression (1 pt).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>linear_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> screened, <span class="at">data =</span> nsdca_cleaned)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The above is a cross-reference and a linear regression results table #</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression results using {gtsummary} #</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(linear_model, </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">intercept =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">label =</span> <span class="fu">list</span>(screened <span class="sc">~</span> <span class="st">"Number Screened"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The above is a cross-reference for a linear regression results table #</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression results using {gtsummary} #</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(linear_model, </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">intercept =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">label =</span> <span class="fu">list</span>(screened <span class="sc">~</span> <span class="st">"Number Screened"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="tbl-two" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-two-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -776,23 +775,23 @@ Table&nbsp;2: Linear Regression results
 </figcaption>
 <div aria-describedby="tbl-two-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="zfrbgnwbdi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zfrbgnwbdi table {
+<div id="artzxqcnun" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#artzxqcnun table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zfrbgnwbdi thead, #zfrbgnwbdi tbody, #zfrbgnwbdi tfoot, #zfrbgnwbdi tr, #zfrbgnwbdi td, #zfrbgnwbdi th {
+#artzxqcnun thead, #artzxqcnun tbody, #artzxqcnun tfoot, #artzxqcnun tr, #artzxqcnun td, #artzxqcnun th {
   border-style: none;
 }
 
-#zfrbgnwbdi p {
+#artzxqcnun p {
   margin: 0;
   padding: 0;
 }
 
-#zfrbgnwbdi .gt_table {
+#artzxqcnun .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -818,12 +817,12 @@ Table&nbsp;2: Linear Regression results
   border-left-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_caption {
+#artzxqcnun .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zfrbgnwbdi .gt_title {
+#artzxqcnun .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -835,7 +834,7 @@ Table&nbsp;2: Linear Regression results
   border-bottom-width: 0;
 }
 
-#zfrbgnwbdi .gt_subtitle {
+#artzxqcnun .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -847,7 +846,7 @@ Table&nbsp;2: Linear Regression results
   border-top-width: 0;
 }
 
-#zfrbgnwbdi .gt_heading {
+#artzxqcnun .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -859,13 +858,13 @@ Table&nbsp;2: Linear Regression results
   border-right-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_bottom_border {
+#artzxqcnun .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_col_headings {
+#artzxqcnun .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -880,7 +879,7 @@ Table&nbsp;2: Linear Regression results
   border-right-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_col_heading {
+#artzxqcnun .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -900,7 +899,7 @@ Table&nbsp;2: Linear Regression results
   overflow-x: hidden;
 }
 
-#zfrbgnwbdi .gt_column_spanner_outer {
+#artzxqcnun .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -912,15 +911,15 @@ Table&nbsp;2: Linear Regression results
   padding-right: 4px;
 }
 
-#zfrbgnwbdi .gt_column_spanner_outer:first-child {
+#artzxqcnun .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zfrbgnwbdi .gt_column_spanner_outer:last-child {
+#artzxqcnun .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zfrbgnwbdi .gt_column_spanner {
+#artzxqcnun .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -932,11 +931,11 @@ Table&nbsp;2: Linear Regression results
   width: 100%;
 }
 
-#zfrbgnwbdi .gt_spanner_row {
+#artzxqcnun .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zfrbgnwbdi .gt_group_heading {
+#artzxqcnun .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -962,7 +961,7 @@ Table&nbsp;2: Linear Regression results
   text-align: left;
 }
 
-#zfrbgnwbdi .gt_empty_group_heading {
+#artzxqcnun .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -977,15 +976,15 @@ Table&nbsp;2: Linear Regression results
   vertical-align: middle;
 }
 
-#zfrbgnwbdi .gt_from_md > :first-child {
+#artzxqcnun .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zfrbgnwbdi .gt_from_md > :last-child {
+#artzxqcnun .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zfrbgnwbdi .gt_row {
+#artzxqcnun .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1004,7 +1003,7 @@ Table&nbsp;2: Linear Regression results
   overflow-x: hidden;
 }
 
-#zfrbgnwbdi .gt_stub {
+#artzxqcnun .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1017,7 +1016,7 @@ Table&nbsp;2: Linear Regression results
   padding-right: 5px;
 }
 
-#zfrbgnwbdi .gt_stub_row_group {
+#artzxqcnun .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1031,15 +1030,15 @@ Table&nbsp;2: Linear Regression results
   vertical-align: top;
 }
 
-#zfrbgnwbdi .gt_row_group_first td {
+#artzxqcnun .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zfrbgnwbdi .gt_row_group_first th {
+#artzxqcnun .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zfrbgnwbdi .gt_summary_row {
+#artzxqcnun .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1049,16 +1048,16 @@ Table&nbsp;2: Linear Regression results
   padding-right: 5px;
 }
 
-#zfrbgnwbdi .gt_first_summary_row {
+#artzxqcnun .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_first_summary_row.thick {
+#artzxqcnun .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zfrbgnwbdi .gt_last_summary_row {
+#artzxqcnun .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1068,7 +1067,7 @@ Table&nbsp;2: Linear Regression results
   border-bottom-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_grand_summary_row {
+#artzxqcnun .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1078,7 +1077,7 @@ Table&nbsp;2: Linear Regression results
   padding-right: 5px;
 }
 
-#zfrbgnwbdi .gt_first_grand_summary_row {
+#artzxqcnun .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1088,7 +1087,7 @@ Table&nbsp;2: Linear Regression results
   border-top-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_last_grand_summary_row_top {
+#artzxqcnun .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1098,11 +1097,11 @@ Table&nbsp;2: Linear Regression results
   border-bottom-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_striped {
+#artzxqcnun .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zfrbgnwbdi .gt_table_body {
+#artzxqcnun .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1111,7 +1110,7 @@ Table&nbsp;2: Linear Regression results
   border-bottom-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_footnotes {
+#artzxqcnun .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1125,7 +1124,7 @@ Table&nbsp;2: Linear Regression results
   border-right-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_footnote {
+#artzxqcnun .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1134,7 +1133,7 @@ Table&nbsp;2: Linear Regression results
   padding-right: 5px;
 }
 
-#zfrbgnwbdi .gt_sourcenotes {
+#artzxqcnun .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1148,7 +1147,7 @@ Table&nbsp;2: Linear Regression results
   border-right-color: #D3D3D3;
 }
 
-#zfrbgnwbdi .gt_sourcenote {
+#artzxqcnun .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1156,72 +1155,72 @@ Table&nbsp;2: Linear Regression results
   padding-right: 5px;
 }
 
-#zfrbgnwbdi .gt_left {
+#artzxqcnun .gt_left {
   text-align: left;
 }
 
-#zfrbgnwbdi .gt_center {
+#artzxqcnun .gt_center {
   text-align: center;
 }
 
-#zfrbgnwbdi .gt_right {
+#artzxqcnun .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zfrbgnwbdi .gt_font_normal {
+#artzxqcnun .gt_font_normal {
   font-weight: normal;
 }
 
-#zfrbgnwbdi .gt_font_bold {
+#artzxqcnun .gt_font_bold {
   font-weight: bold;
 }
 
-#zfrbgnwbdi .gt_font_italic {
+#artzxqcnun .gt_font_italic {
   font-style: italic;
 }
 
-#zfrbgnwbdi .gt_super {
+#artzxqcnun .gt_super {
   font-size: 65%;
 }
 
-#zfrbgnwbdi .gt_footnote_marks {
+#artzxqcnun .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zfrbgnwbdi .gt_asterisk {
+#artzxqcnun .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zfrbgnwbdi .gt_indent_1 {
+#artzxqcnun .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zfrbgnwbdi .gt_indent_2 {
+#artzxqcnun .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zfrbgnwbdi .gt_indent_3 {
+#artzxqcnun .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zfrbgnwbdi .gt_indent_4 {
+#artzxqcnun .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zfrbgnwbdi .gt_indent_5 {
+#artzxqcnun .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zfrbgnwbdi .katex-display {
+#artzxqcnun .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zfrbgnwbdi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#artzxqcnun div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1262,7 +1261,7 @@ Table&nbsp;2: Linear Regression results
 </figure>
 </div>
 </div>
-<p>The results shown in <a href="#tbl-two" class="quarto-xref">Table&nbsp;2</a> indicate that the number of screened newborns is a statistically significant predictor of the number of cases.</p></li>
+<p>The results shown in <a href="#tbl-two" class="quarto-xref">Table&nbsp;2</a> indicated the number of screened newborns was a statistically significant predictor of the number of cases.</p></li>
 <li><p>Create a figure (1 pt).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>histogram_figure <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nsdca_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> cases)) <span class="sc">+</span></span>
@@ -1273,8 +1272,7 @@ Table&nbsp;2: Linear Regression results
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(histogram_figure)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># The above is a cross-reference and a histogram of the case distribution #</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The above is a cross-reference for a histogram of the case distribution #</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-hists-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1288,7 +1286,7 @@ Figure&nbsp;1: Case Count Distribution
 </div>
 </div>
 </div>
-<p>The distribution of <code>Case Count</code> is right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in <a href="#fig-hists-1" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<p>The distribution of <code>Case Count</code> was right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in <a href="#fig-hists-1" class="quarto-xref">Figure&nbsp;1</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nsdca_cleaned,</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">mapping =</span> <span class="fu">aes</span>(</span>
@@ -1302,12 +1300,11 @@ Figure&nbsp;1: Case Count Distribution
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Dimensions for Central Coast, Los Angeles, Northern Central Valley, Northern, Mountain, and Desert Areas, San Francisco Bay Area, South Coast, Southern Inland Empire"</span> ,</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"% of All Disorders in Region"</span>, <span class="at">y =</span> <span class="st">"Case Count"</span>,</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"Region"</span>)</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># The above is a cross-reference and a scatter plot between Percent of All Disorders in Region and Case Count #</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference #</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>total_regions <span class="ot">&lt;-</span> <span class="fu">n_distinct</span>(nsdca_cleaned<span class="sc">$</span>region)</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(total_regions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># The above is a cross-reference for a scatter plot between 'Percent of All Disorders' in 'Region and Case Count' #</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-reference #</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>total_regions <span class="ot">&lt;-</span> <span class="fu">n_distinct</span>(nsdca_cleaned<span class="sc">$</span>region)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(total_regions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7</code></pre>
 </div>
@@ -1325,7 +1322,7 @@ Figure&nbsp;2: Percent of All Disorders in Region and Case Count Distribution
 </div>
 </div>
 <p><a href="#fig-hists-2" class="quarto-xref">Figure&nbsp;2</a> is a scatter plot of the <code>Percent of All Disorders in Region</code> and <code>Case Count</code> variables across 7 regions.</p></li>
-<li><p>Write <em>and</em> use a function that does something with the data (1 pt)</p>
+<li><p>Write <em>and</em> use a function that does something with the data (1 pt).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A function that calculates the mean and standard deviation for a given numeric variable #</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>calculate_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(data, variable) {</span>
@@ -1356,8 +1353,8 @@ Figure&nbsp;2: Percent of All Disorders in Region and Case Count Distribution
 1 697566. 320218.</code></pre>
 </div>
 </div>
-<p>The mean number of cases is 58.1919192 while the standard deviation of cases is 109.0573409.</p></li>
-<li><p>The table, regression results, and figure, with appropriate captions (1 pt)</p>
+<p>The mean number of cases was 58.1919192 while the standard deviation of cases was 109.0573409.</p></li>
+<li><p>The table, regression results, and figure, with appropriate captions (1 pt).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inline stastistics for univariate regression #</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>screened_table <span class="ot">&lt;-</span> <span class="fu">tbl_uvregression</span>(</span>
@@ -1378,9 +1375,9 @@ Figure&nbsp;2: Percent of All Disorders in Region and Case Count Distribution
 </div>
 </div>
 <p>The regression analysis revealed that the <code>Case Count</code> variable was a significant predictor of the outcome, with a p-value of p=0.013.</p></li>
-<li><p>Read in a data set and save a file (can be data, table, figure, etc.) Use the <code>{here}</code> package every time you refer to file paths (at least twice) (1 pt)</p></li>
-<li><p>Commit and push your work to GitHub as you go (1 pt)</p></li>
-<li><p>In a README file, include any notes necessary for us to easily reproduce your analysis (e.g., “Run <code>script.R</code> and then render <code>document.qmd</code>”) as well as some information about your data (1 pt)</p></li>
+<li><p>Read in a data set and save a file (can be data, table, figure, etc.) Use the <code>{here}</code> package every time you refer to file paths (at least twice) (1 pt).</p></li>
+<li><p>Commit and push your work to GitHub as you go (1 pt).</p></li>
+<li><p>In a README file, include any notes necessary for us to easily reproduce your analysis (e.g., “Run <code>script.R</code> and then render <code>document.qmd</code>”) as well as some information about your data (1 pt).</p></li>
 </ol>
 </section>
 
