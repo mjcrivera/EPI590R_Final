@@ -29,12 +29,7 @@ nsdca_cleaned <- nsdca %>%
 str(nsdca_cleaned)
 
 # Save the cleaned data to a new CSV file #
-write_csv(nsdca_cleaned, "cleaned_nsdca.csv")
-
-# Create data/clean folder #
-if (!dir.exists(here::here("data", "clean"))) {
-	dir.create(here::here("data", "clean"))
-}
+write_csv(nsdca_cleaned,here::here("data", "clean", "cleaned_nsdca.csv"))
 
 # Save the complete-case data #
 write_rds(nsdca_cleaned, here::here("data", "clean", "nsdca_cleaned_complete.rds"))
