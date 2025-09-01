@@ -55,7 +55,7 @@ tbl_regression(linear_model,
 							 label = list(screened ~ "Number Screened"))
 
 # 3. Create a figure #
-# Create a histogram of the 'Case Count' variable to visualize its distribution.
+# A histogram of the 'Case Count' #
 histogram_figure <- ggplot(nsdca_cleaned, aes(x = cases)) +
 	geom_histogram(binwidth = 25, fill = "lightblue", color = "black") +
 	labs(
@@ -63,6 +63,22 @@ histogram_figure <- ggplot(nsdca_cleaned, aes(x = cases)) +
 		x = "Case Count",
 		y = "Frequency"
 	)
+print(histogram_figure)
+
+# A scatter plot of the 'Percent of All Disorders in Region' and 'Case Count' #
+ggplot(data = nsdca_cleaned,
+			 mapping = aes(
+			 	x = percent_region,
+			 	y = cases,
+			 	color = region
+			 )
+) +
+	geom_point() +
+	labs(title = "Percent of All Disorders in Region and Case Count",
+			 subtitle = "Dimensions for Central Coast, Los Angeles, Northern Central Valley,
+			 Northern, Mountain, and Desert Areas, San Francisco Bay Area, South Coast, Southern Inland Empire" ,
+			 x = "% of All Disorders in Region", y = "Case Count",
+			 color = "Region")
 
 # 4. Write and use a function #
 # This function calculates the mean and standard deviation for a given numeric variable.

@@ -32,7 +32,7 @@ nsdca <- nsdca %>%
 # Convert percent column to numeric & create factor for categorical variable: region #
   mutate(
     percent_region = as.numeric(percent_region),
-    region = factor(region, labels = c("Los Angeles", "Central Coast", "Northern Central Valley", "Northern, Mountain, and Desert Areas", "San Francisco Bay Area", "South Coast", "Southern Inland Empire")
+    region = factor(region, labels = c("Central Coast", "Los Angeles", "Northern Central Valley", "Northern, Mountain, and Desert Areas", "San Francisco Bay Area", "South Coast", "Southern Inland Empire")
 ))
 
 # Remove rows with missing values #
@@ -57,14 +57,81 @@ write_rds(nsdca_cleaned, here::here("data", "clean", "nsdca_cleaned_complete.rds
 1.  Create a `{gtsummary}` table of descriptive statistics about your data (1 pt)
 
 ```{r}
-#| echo: false
-2 * 2
+# The table will show descriptive statistics for 'Case Count', 'Number Screened', and 'Percent of All Disorders in Region' including an overall column. #
+
+tbl_summary(
+  nsdca_cleaned,
+  by = region,
+  include = c(region, cases, screened, percent_region),
+  label = list(
+    cases ~ "Case Count",
+    screened ~ "Number Screened",
+    percent_region ~ "Percent of All Disorders in Region"
+  )
+) %>%
+  add_overall() %>% 
+modify_table_styling(
+  columns = label,
+  rows = label == "Percent of All Disorders in Region",
+  footnote = "see https://catalog.data.gov/dataset/newborn-screening-disorders-426e4"
+)
 ```
 
 2.  Fit a regression and present well-formatted results from the regression (1 pt)
+
+    ```{r}
+    # Fit a linear regression model predicting 'Case Count' from 'Number Screened' #
+    linear_model <- lm(cases ~ screened, data = nsdca_cleaned)
+
+    # Present the regression results using {gtsummary} #
+    tbl_regression(linear_model, 
+                   intercept = TRUE, 
+                   label = list(screened ~ "Number Screened"))
+
+    ```
+
 3.  Create a figure (1 pt)
+
+    ```{r}
+    # A histogram of the 'Case Count' #
+    histogram_figure <- ggplot(nsdca_cleaned, aes(x = cases)) +
+      geom_histogram(binwidth = 25, fill = "lightblue", color = "black") +
+      labs(
+        title = "Histogram of Case Counts",
+        x = "Case Count",
+        y = "Frequency"
+      )
+    print(histogram_figure)
+
+    # A scatter plot of 'Percent of All Disorders in Region' and 'Case Count' #
+    ggplot(data = nsdca_cleaned,
+    mapping = aes(
+    x = percent_region,
+    y = cases,
+    color = region
+    )
+    ) +
+    	geom_point() +
+    	labs(title = "Percent of All Disorders in Region and Case Count",
+    subtitle = "Dimensions for Central Coast, Los Angeles, Northern Central Valley, Northern, Mountain, and Desert Areas, San Francisco Bay Area, South Coast, Southern Inland Empire" ,
+    x = "% of All Disorders in Region", y = "Case Count",
+    color = "Region")
+    ```
+
 4.  Write *and* use a function that does something with the data (1 pt)
+
+    ```{r}
+
+    ```
+
 5.  The table, regression results, and figure, with appropriate captions (1 pt)
+
+    ```{r}
+
+    ```
+
 6.  Read in a dataset and save a file (can be data, table, figure, etc.) Use the `{here}` package every time you refer to file paths (at least twice) (1 pt)
+
 7.  Commit and push your work to GitHub as you go (1 pt)
+
 8.  In a README file, include any notes necessary for us to easily reproduce your analysis (e.g., “Run `script.R` and then render `document.qmd`”) as well as some information about your data (1 pt)

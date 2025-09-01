@@ -1,33 +1,33 @@
 region,disease_type,cases,screened,percent_region
-Los Angeles,3-Methylcrotonyl-CoA carboxylase deficiency (3MCC deficiency),19,557240,3
-Los Angeles,ALD - not otherwise specified,11,185798,2
-Los Angeles,ALD carrier (female),18,185798,3
-Los Angeles,Biotinidase deficiency profound (BD),7,557240,1
-Los Angeles,Carnitine transporter deficiency (CTD)/carnitine uptake defect (CUD),10,557240,2
-Los Angeles,"Congenital adrenal hyperplasia, classical salt wasting (CAH)",27,557240,4
-Los Angeles,Cystic fibrosis (CF),81,557240,13
-Los Angeles,"Galactosemia, classical",6,557240,1
-Los Angeles,"Hypothyroidism, primary congenital (PCH)",334,557240,55
-Los Angeles,Medium chain acyl-CoA dehydrogenase deficiency (MCAD Deficiency),29,557240,5
-Los Angeles,Phenylketonuria (PKU),31,557240,5
-Los Angeles,Sickle Cell Disease,22,557240,4
-Los Angeles,Very long chain acyl-CoA dehydrogenase deficiency (VLCAD deficiency),7,557240,1
-Central Coast,3-Methylcrotonyl-CoA carboxylase deficiency (3MCC deficiency),30,1372349,2
-Central Coast,ALD - not otherwise specified,28,446768,2
-Central Coast,ALD carrier (female),25,446768,2
-Central Coast,Biotinidase deficiency profound (BD),26,1372349,2
-Central Coast,Carnitine transporter deficiency (CTD)/carnitine uptake defect (CUD),16,1372349,1
-Central Coast,"Congenital adrenal hyperplasia, classical salt wasting (CAH)",72,1372349,5
-Central Coast,"Congenital adrenal hyperplasia, classical simple virilizing (CAH)",9,1372349,1
-Central Coast,Cystic fibrosis (CF),111,1372349,7
-Central Coast,"Galactosemia, classical",13,1372349,1
-Central Coast,"Hypothyroidism, primary congenital (PCH)",720,1372349,46
-Central Coast,Isovaleric acidemia (IVA),13,1372349,1
-Central Coast,Medium chain acyl-CoA dehydrogenase deficiency (MCAD Deficiency),44,1372349,3
-Central Coast,Phenylketonuria (PKU),62,1372349,4
-Central Coast,"SCID, severe combined immunodeficiency",10,818577,1
-Central Coast,Sickle Cell Disease,339,1372349,22
-Central Coast,Very long chain acyl-CoA dehydrogenase deficiency (VLCAD deficiency),13,1372349,1
+Central Coast,3-Methylcrotonyl-CoA carboxylase deficiency (3MCC deficiency),19,557240,3
+Central Coast,ALD - not otherwise specified,11,185798,2
+Central Coast,ALD carrier (female),18,185798,3
+Central Coast,Biotinidase deficiency profound (BD),7,557240,1
+Central Coast,Carnitine transporter deficiency (CTD)/carnitine uptake defect (CUD),10,557240,2
+Central Coast,"Congenital adrenal hyperplasia, classical salt wasting (CAH)",27,557240,4
+Central Coast,Cystic fibrosis (CF),81,557240,13
+Central Coast,"Galactosemia, classical",6,557240,1
+Central Coast,"Hypothyroidism, primary congenital (PCH)",334,557240,55
+Central Coast,Medium chain acyl-CoA dehydrogenase deficiency (MCAD Deficiency),29,557240,5
+Central Coast,Phenylketonuria (PKU),31,557240,5
+Central Coast,Sickle Cell Disease,22,557240,4
+Central Coast,Very long chain acyl-CoA dehydrogenase deficiency (VLCAD deficiency),7,557240,1
+Los Angeles,3-Methylcrotonyl-CoA carboxylase deficiency (3MCC deficiency),30,1372349,2
+Los Angeles,ALD - not otherwise specified,28,446768,2
+Los Angeles,ALD carrier (female),25,446768,2
+Los Angeles,Biotinidase deficiency profound (BD),26,1372349,2
+Los Angeles,Carnitine transporter deficiency (CTD)/carnitine uptake defect (CUD),16,1372349,1
+Los Angeles,"Congenital adrenal hyperplasia, classical salt wasting (CAH)",72,1372349,5
+Los Angeles,"Congenital adrenal hyperplasia, classical simple virilizing (CAH)",9,1372349,1
+Los Angeles,Cystic fibrosis (CF),111,1372349,7
+Los Angeles,"Galactosemia, classical",13,1372349,1
+Los Angeles,"Hypothyroidism, primary congenital (PCH)",720,1372349,46
+Los Angeles,Isovaleric acidemia (IVA),13,1372349,1
+Los Angeles,Medium chain acyl-CoA dehydrogenase deficiency (MCAD Deficiency),44,1372349,3
+Los Angeles,Phenylketonuria (PKU),62,1372349,4
+Los Angeles,"SCID, severe combined immunodeficiency",10,818577,1
+Los Angeles,Sickle Cell Disease,339,1372349,22
+Los Angeles,Very long chain acyl-CoA dehydrogenase deficiency (VLCAD deficiency),13,1372349,1
 Northern Central Valley,3-Methylcrotonyl-CoA carboxylase deficiency (3MCC deficiency),9,600705,1
 Northern Central Valley,ALD - not otherwise specified,7,208611,1
 Northern Central Valley,ALD carrier (female),13,208611,2
