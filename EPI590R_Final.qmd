@@ -75,6 +75,16 @@ modify_table_styling(
   rows = label == "Percent of All Disorders in Region",
   footnote = "see https://catalog.data.gov/dataset/newborn-screening-disorders-426e4"
 )
+
+#| label: tbl-descr
+#| tbl-cap: "Descriptive Statistics"
+#| output-location: slide
+table1 <- tbl_summary(
+  nsdca_cleaned,
+  by = region,
+   include = c(region, cases, screened, percent_region)) |> 
+  add_overall(last = TRUE)
+inline_text(table1, variable = "percent_region", column = "stat_1")
 ```
 
 2.  Fit a regression and present well-formatted results from the regression (1 pt)
@@ -144,6 +154,15 @@ modify_table_styling(
 
     ```{r}
 
+    screened_table <- tbl_uvregression(
+      nsdca_cleaned,
+      y = screened,
+      include = c(
+        region, screened, cases, percent_region
+      ),
+      method = lm
+    )
+    inline_text(screened_table, variable = "cases")
     ```
 
 6.  Read in a dataset and save a file (can be data, table, figure, etc.) Use the `{here}` package every time you refer to file paths (at least twice) (1 pt)
