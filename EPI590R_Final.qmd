@@ -57,7 +57,7 @@ write_rds(nsdca_cleaned, here::here("data", "clean", "nsdca_cleaned_complete.rds
 1.  Create a `{gtsummary}` table of descriptive statistics about your data (1 pt)
 
 ```{r}
-# Cross-reference #
+# Cross-reference#
 #| label: tbl-one
 #| tbl-cap: "Descriptive Statistics for 'Case Count, Number Screened, and Percent of All Disorders in Region"
 #| message: false
@@ -125,7 +125,7 @@ There were `r total_sample` California regions.
 
     ```{r}
     # Cross-reference #
-    #| label: fig-hist
+    #| label: fig-hist-case
     #| fig-cap: "Case Count Distribution"
 
     # A histogram of the 'Case Count' #
@@ -139,10 +139,9 @@ There were `r total_sample` California regions.
     print(histogram_figure)
 
     # Cross-reference #
-    #| label: fig-three
+    #| label: fig-hist
     #| fig-cap: "Percent of All Disorders in Region and Case Count Distribution"
 
-    # A scatter plot of 'Percent of All Disorders in Region' and 'Case Count' #
     ggplot(data = nsdca_cleaned,
     mapping = aes(
     x = percent_region,
@@ -155,9 +154,15 @@ There were `r total_sample` California regions.
     subtitle = "Dimensions for Central Coast, Los Angeles, Northern Central Valley, Northern, Mountain, and Desert Areas, San Francisco Bay Area, South Coast, Southern Inland Empire" ,
     x = "% of All Disorders in Region", y = "Case Count",
     color = "Region")
+
+    # Cross-reference #
+    total_regions <- n_distinct(nsdca_cleaned$region)
+    print(total_regions)
     ```
 
-    The distribution of `Case Count` is right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in \@fig-hist. \@fig-three contains a scatter plot across `total_sample` regions.
+    The distribution of `Case Count` is right-skewed, with most regions having a relatively low number of cases and a few having a high number of cases, as shown in @fig-hist-case
+
+    @fig-hist contains a scatter plot across `total_regions` regions.
 
 4.  Write *and* use a function that does something with the data (1 pt)
 
@@ -172,16 +177,16 @@ There were `r total_sample` California regions.
     }
 
     # Functions to calculate stats for 'Case Count' and 'Number Screened' and store the results in a list #
-    case_count_stats <- calculate_stats(nsdca_cleaned, cases)
+    case_stats <- calculate_stats(nsdca_cleaned, cases)
 
-    case_count_stats
+    case_stats
 
     screened_stats <- calculate_stats(nsdca_cleaned, screened)
 
     screened_stats
     ```
 
-    The mean for cases is `calculate_stats$mean` while the standard deviation is `calculate_stats$sd`.
+    The mean number of cases is `r case_stats$mean` while the standard deviation of cases is `r case_stats$sd`.
 
 5.  The table, regression results, and figure, with appropriate captions (1 pt)
 
@@ -199,9 +204,9 @@ There were `r total_sample` California regions.
     inline_text(screened_table, variable = "cases", pattern = "{p.value}")
     ```
 
-    The p-value for the univariate regression for `screened` is `r p.value`.
+    The regression analysis revealed that the `Case Count` variable was a significant predictor of the outcome, with a p-value of `r gtsummary::inline_text(screened_table, variable = "cases", pattern = "{p.value}")`.
 
-6.  Read in a dataset and save a file (can be data, table, figure, etc.) Use the `{here}` package every time you refer to file paths (at least twice) (1 pt)
+6.  Read in a data set and save a file (can be data, table, figure, etc.) Use the `{here}` package every time you refer to file paths (at least twice) (1 pt)
 
 7.  Commit and push your work to GitHub as you go (1 pt)
 
