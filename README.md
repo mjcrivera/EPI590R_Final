@@ -10,7 +10,7 @@ and refer to the "EPI590R_Final" instead.
 
 For your information:
 
-Run EPI590R_Final_script.R and then render EPI590R_Final.qmd
+EPI590R_Final_script.R was my work space to produce EPI590R_Final.qmd (render this)
 
 nsdca.csv is the original (raw) data set from Data.gov (located in EPI590R_Final/data/raw)
 
